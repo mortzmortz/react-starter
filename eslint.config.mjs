@@ -24,6 +24,11 @@ export default tseslint.config(
       import: importXPlugin,
       prettier: prettierPlugin,
     },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
     languageOptions: {
       globals: {
         ...globals.browser,
