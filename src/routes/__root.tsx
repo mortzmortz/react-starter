@@ -1,5 +1,7 @@
+import { type QueryClient } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
-  createRootRoute,
+  createRootRouteWithContext,
   HeadContent,
   Link,
   Outlet,
@@ -11,7 +13,9 @@ import appCss from '../index.css?url';
 import { DefaultCatchBoundary } from '@/components/default-catch-boundary';
 import { NotFound } from '@/components/not-found';
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   head: () => ({
     meta: [
       {
@@ -56,6 +60,7 @@ function RootComponent() {
     <RootDocument>
       <Outlet />
       <TanStackRouterDevtools />
+      <ReactQueryDevtools buttonPosition="bottom-right" />
     </RootDocument>
   );
 }

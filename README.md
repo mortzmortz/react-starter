@@ -1,1 +1,1 @@
-# React + TypeScript + Vite + Tanstack Router + Tanstack Start + Tailwind@4 + ESLint + Prettier + Inter Starter
+# React + TypeScript + Vite + Tanstack Router + Tanstack Start + Tanstack Query + Tailwind@4 + ESLint + Prettier + Inter Starter
