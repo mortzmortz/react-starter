@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { type QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
@@ -9,9 +10,9 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
-import appCss from '../index.css?url';
-import { DefaultCatchBoundary } from '@/components/default-catch-boundary';
-import { NotFound } from '@/components/not-found';
+import { DefaultCatchBoundary } from '~/components/default-catch-boundary';
+import { NotFound } from '~/components/not-found';
+import appCss from '~/index.css?url';
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -26,14 +27,11 @@ export const Route = createRootRouteWithContext<{
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: '🪼',
       },
     ],
     links: [
-      {
-        rel: 'stylesheet',
-        href: appCss,
-      },
+      { rel: 'stylesheet', href: appCss },
       {
         rel: 'preconnect',
         href: 'https://rsms.me/',
