@@ -14,5 +14,5 @@
   "useTabs": false,
   "plugins": ["prettier-plugin-tailwindcss"],
   "tailwindAttributes": ["class", "className"],
-  "tailwindFunctions": ["clsx", "cn"]
+  "tailwindFunctions": ["clsx", "cva", "cn"]
 }
