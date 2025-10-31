@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
+import { TanStackDevtools } from '@tanstack/react-devtools';
 import { type QueryClient } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import {
   createRootRouteWithContext,
   HeadContent,
@@ -8,7 +9,7 @@ import {
   Outlet,
   Scripts,
 } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 
 import { DefaultCatchBoundary } from '~/components/default-catch-boundary';
 import { NotFound } from '~/components/not-found';
@@ -57,8 +58,21 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
-      <TanStackRouterDevtools />
-      <ReactQueryDevtools buttonPosition="bottom-right" />
+      <TanStackDevtools
+        config={{
+          position: 'bottom-right',
+        }}
+        plugins={[
+          {
+            name: 'Tanstack Router',
+            render: <TanStackRouterDevtoolsPanel />,
+          },
+          {
+            name: 'React Query',
+            render: <ReactQueryDevtoolsPanel />,
+          },
+        ]}
+      />
     </RootDocument>
   );
 }
