@@ -13,11 +13,11 @@
   "dependencies": {
     "@radix-ui/react-slot": "1.2.4",
     "@tailwindcss/vite": "4.1.18",
-    "@tanstack/react-devtools": "0.8.4",
+    "@tanstack/react-devtools": "0.8.6",
     "@tanstack/react-query": "5.90.12",
     "@tanstack/react-query-devtools": "5.91.1",
-    "@tanstack/react-router": "1.141.4",
-    "@tanstack/react-router-devtools": "1.141.4",
+    "@tanstack/react-router": "1.143.6",
+    "@tanstack/react-router-devtools": "1.143.6",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "react": "19.2.3",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@eslint/js": "9.39.2",
-    "@tanstack/router-plugin": "1.141.5",
+    "@tanstack/router-plugin": "1.143.6",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.2",
     "eslint": "9.39.2",
@@ -41,8 +41,8 @@
     "prettier": "3.7.4",
     "prettier-plugin-tailwindcss": "0.7.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.50.0",
+    "typescript-eslint": "8.50.1",
     "vite": "7.3.0",
-    "vite-tsconfig-paths": "6.0.2"
+    "vite-tsconfig-paths": "6.0.3"
   }
 }
