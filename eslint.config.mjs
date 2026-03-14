@@ -1,17 +1,18 @@
-import js from '@eslint/js';
-import prettierConfig from 'eslint-config-prettier';
+// @ts-check
+import { defineConfig } from 'eslint/config';
 import importXPlugin from 'eslint-plugin-import-x';
-import prettierPlugin from 'eslint-plugin-prettier';
+import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: [
       'node_modules/**',
       '.next/**',
+      '.netlify/**',
       'out/**',
       'coverage/**',
       'dist/**',
@@ -22,7 +23,6 @@ export default tseslint.config(
   {
     plugins: {
       import: importXPlugin,
-      prettier: prettierPlugin,
     },
     settings: {
       react: {
@@ -52,10 +52,9 @@ export default tseslint.config(
           ],
         },
       ],
-      ...prettierPlugin.configs.recommended.rules,
-      ...prettierConfig.rules,
     },
   },
+  prettierRecommended,
   // jsx/tsx Files
   {
     files: ['**/*.tsx', '**/*.jsx'],
@@ -77,13 +76,7 @@ export default tseslint.config(
   // React Files
   {
     files: ['**/*.ts?(x)', '**/*.js?(x)'],
-    plugins: {
-      'react-hooks': reactHooksPlugin,
-    },
-    rules: {
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-    },
+    ...reactHooksPlugin.configs.flat.recommended,
   },
   // Typescript Files
   {
