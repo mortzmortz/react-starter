@@ -1,11 +1,12 @@
 // @ts-check
+import eslintReact from '@eslint-react/eslint-plugin';
 import { defineConfig } from 'eslint/config';
 import importXPlugin from 'eslint-plugin-import-x';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+
+const reactTsRecommended = eslintReact.configs['recommended-typescript'];
 
 export default defineConfig(
   {
@@ -23,11 +24,6 @@ export default defineConfig(
   {
     plugins: {
       import: importXPlugin,
-    },
-    settings: {
-      react: {
-        version: 'detect',
-      },
     },
     languageOptions: {
       globals: {
@@ -55,42 +51,26 @@ export default defineConfig(
     },
   },
   prettierRecommended,
-  // jsx/tsx Files
+  // TypeScript + React ([ESLint React](https://www.eslint-react.xyz/) replaces eslint-plugin-react + eslint-plugin-react-hooks)
   {
-    files: ['**/*.tsx', '**/*.jsx'],
+    files: ['**/*.{ts,tsx}'],
+    ...reactTsRecommended,
     plugins: {
-      react: reactPlugin,
+      ...reactTsRecommended.plugins,
+      '@typescript-eslint': tseslint.plugin,
     },
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        jsx: true,
-      },
-    },
-    rules: {
-      ...reactPlugin.configs.recommended.rules,
-      ...reactPlugin.configs['jsx-runtime'].rules,
-      'react/jsx-key': 'warn',
-    },
-  },
-  // React Files
-  {
-    files: ['**/*.ts?(x)', '**/*.js?(x)'],
-    ...reactHooksPlugin.configs.flat.recommended,
-  },
-  // Typescript Files
-  {
-    files: ['**/*.ts?(x)'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
         projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
-    plugins: {
-      '@typescript-eslint': tseslint.plugin,
-    },
     rules: {
+      ...reactTsRecommended.rules,
+      '@eslint-react/no-missing-key': 'warn',
+      // Too strict for common patterns (e.g. formatting dates, console in error boundaries).
+      '@eslint-react/purity': 'off',
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
